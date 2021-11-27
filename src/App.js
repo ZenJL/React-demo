@@ -6,6 +6,10 @@ import ComposeComponent from './sampleApp/ComposeComponent';
 import State from './components/State';
 import ReactBoxes from './sampleApp/ReactBoxes';
 import HandleEvent from './components/HandleEvent';
+import ConditionalRendering from './components/ConditionalRendering';
+import GuestGreeting from './sampleApp/GuestGreeting';
+import LiftingStateUp from './sampleApp/LiftingStateUp';
+import GenerateBoxesDemo from './sampleApp/GenerateBoxesDemo';
 
 function App() {
   const [count, setCount] = useState(0);    // đây là local state của App
@@ -21,7 +25,6 @@ function App() {
     // setCount(count + 1);
     // setCount(0);
   };
-
 
 
   const isNewbie = false;   // biến bt, ko đc quản lý bởi react
@@ -49,7 +52,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Expression in JSX</h1>
+      <h1 style={{fontSize: '40px', color: '#f00'}}>Expression in JSX</h1>
       <div>{1+2}</div>
       <div>{1 > 2 ? "true" : "false..."}</div>
       <div>{isNewbie === true ? "this is react" : null}</div>
@@ -109,6 +112,21 @@ function App() {
       <h2>React Boxes</h2>
       <ReactBoxes />
 
+      <hr/>
+      <h2>Conditional Rendering</h2>
+      <ConditionalRendering />
+
+      <hr/>
+      <h2>Guess welcome</h2>
+      <GuestGreeting />
+
+      <hr/>
+      <h2>Guess welcome</h2>
+      <LiftingStateUp />
+
+      <hr/>
+      <h2>Exercise Generate Boxes</h2>
+      <GenerateBoxesDemo />
     </div>
   );
 }

@@ -4,6 +4,10 @@ import Input from "./Input";
 import Text from "./Text";
 
 function ReactBoxes() {
+    function AlertReactBoxes() {
+        alert('Hello to React from React!');
+    };
+
     return (
         <div>
             <Text description="Demo ReactBoxes" color="red" />
@@ -13,8 +17,4 @@ function ReactBoxes() {
     );
 };
 
-
-function AlertReactBoxes() {
-    alert('Hello to React from React!');
-}
 export default ReactBoxes;
