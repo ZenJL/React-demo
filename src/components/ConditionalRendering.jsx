@@ -48,7 +48,7 @@ function ConditionalRendering() {
 
     //// sau khi react render XONG 1ST (components mounted), moi chay useEffect
     useEffect(() => {
-        console.log('useEffect run here3')
+        // console.log('useEffect run here3')      // uncomment khi cần xem
         //// thay vi default.map() o day (demo), thi thuc te co the dung fetch api -> tra ve 1 defaultTodos rồi thao tác tiếp
         // e.g: const defaultTodo = await / fetch (....)
         const newTodos = defaultTodo.map(item => {  // chạy useEffect ra mảng mới có id và setState lại mảng đó
@@ -57,12 +57,12 @@ function ConditionalRendering() {
                 id: uuidv4()
             }
         })
-        console.log('new222: ', newTodos)
+        // console.log('new222: ', newTodos)   // uncomment khi muốn xem
         setTodos(newTodos);
     }, [])  // only run when first render  
     // giá trị [] ở useEffect này chỉ run first lần đầu tiên, 1 lần sau khi component đã đc mounted
 
-    console.log('todo: ', todos)
+    // console.log('todo: ', todos)        // uncomment khi muốn xem
 
     function handleLogical() {
         setCount(null);
@@ -100,7 +100,7 @@ function ConditionalRendering() {
         <div>
             <h4>inline if with logical && operator</h4>
             {todos.length > 0 && todos.map((todo) => {
-                console.log('todo what: ', todo);
+                // console.log('todo what: ', todo);       // uncomment khi cần xem
                 return (
                     //// truong hop co the modify ds list item, dung unique id = library uuid, de tao unique key trong child cua mang array do
                     <div key={todo.id}>

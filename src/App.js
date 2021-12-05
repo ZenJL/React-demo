@@ -10,11 +10,13 @@ import ConditionalRendering from './components/ConditionalRendering';
 import GuestGreeting from './sampleApp/GuestGreeting';
 import LiftingStateUp from './sampleApp/LiftingStateUp';
 import GenerateBoxesDemo from './sampleApp/GenerateBoxesDemo';
+import Forms from './components/Forms';
+import BoxColorDemo from './sampleApp/BoxColorDemo';
 
 function App() {
   const [count, setCount] = useState(0);    // đây là local state của App
   // muốn lưu lại giá trị để khi refresh trang vẫn xài tiếp thì lưu vào local storage
-  console.log('count: ', count);
+  // console.log('count: ', count);     // uncomment khi cần xem
 
   function handleIncrement() {
     setCount(prevState => {
@@ -127,6 +129,21 @@ function App() {
       <hr/>
       <h2>Exercise Generate Boxes</h2>
       <GenerateBoxesDemo />
+
+      <hr/>
+      <h2>Form</h2>
+      <Forms />
+
+      <hr/>
+      <h2>Boxes-Color</h2>
+      <BoxColorDemo />
+
+      <hr/>
+      <h2>Boxes-Color</h2>
+      <label>
+        cu chuoi
+        <input type="checkbox" />
+      </label>
     </div>
   );
 }
