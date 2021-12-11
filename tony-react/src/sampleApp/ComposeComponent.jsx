@@ -3,6 +3,7 @@ import React from 'react'
 import CommentDate from './CommentDate';
 import CommentDescription from './CommentDescription';
 import CommentUserInfo from './CommentUserInfo';
+import CommentDetail from './CommentDetail';
 
 function ComposeComponent() {
   const comment = {
@@ -19,6 +20,7 @@ function ComposeComponent() {
       <CommentUserInfo name={comment.author.name} avatarUrl={comment.author.avatarUrl} />
       <CommentDescription description={comment.text} />
       <CommentDate date={comment.date} />
+      <CommentDetail /> 
     </div>
   )
 }

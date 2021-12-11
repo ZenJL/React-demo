@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './App.css';
 
@@ -12,7 +12,6 @@ import ConditionalRendering from './components/ConditionalRendering';
 import GuestGreeting from './sampleApp/GuestGreeting';
 import Forms from './components/Forms';
 
-
 function TodoList() {
   return (
     <ul>
@@ -24,6 +23,7 @@ function TodoList() {
 
 function App() {
   const [count, setCount] = useState(0); // local state of App
+  const [users, setUsers] = useState([]);
   const isNewbie = true;
 
   function handleIncrement() {
@@ -31,14 +31,49 @@ function App() {
     //   console.log('prevState: ', prevState);
     //   return prevState + 1
     // })
-    setCount(0);
-    // setCount(count + 1)
+    // setCount(0);
+    setCount(count + 1)
   }
 
-  console.log('count: ', count)
+  console.log('app component: ')
+
+  useEffect(() => {
+    console.log('useEffect: ')
+  }, []) // only run once time
+
+  useEffect(() => {
+    console.log('useEffect count change: ', count)
+  }, [isNewbie]) // just re-run when count change
+
+  useEffect(() => {
+    console.log('useEffect clean up function 1')
+
+    // clearn up function
+    return () => {
+      console.log('useEffect clean up function 2')
+    }
+  })
+
+  // fectch api users when load page
+  useEffect(() => {
+    async function fetchUsers() {
+      const res = await fetch('https://tony-json-server.herokuapp.com/api/users');
+      const data = await res.json();
+      setUsers(data.data);
+    }
+    fetchUsers();
+  }, [])
+  // render -> useEffect -> update data -> cpn re-render -> useEffect // loop render
 
   return (
     <div className="App">
+      <h1 style={{ fontSize: '40px', color: '#f00' }}>useEffect</h1>
+      <b>List Users</b> <br />
+      {users.map(user => (
+        <div>
+          {user.firstName}
+        </div>
+      ))}
       <h1 style={{ fontSize: '40px', color: '#f00' }}>Expression in JSX</h1>
       <div>
         {1 > 2 ? "not true" : "not false"} <br />
@@ -88,6 +123,11 @@ function App() {
       ------------------------------------
       <h1>Form</h1>
       <Forms />
+
+
+      {/* <MovieProvider>
+       <MovieFilm />
+      </MovieProvider> */}
     </div>
   );
 }
