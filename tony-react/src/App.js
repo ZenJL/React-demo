@@ -11,6 +11,7 @@ import HandleEvent from './components/HandleEvent';
 import ConditionalRendering from './components/ConditionalRendering';
 import GuestGreeting from './sampleApp/GuestGreeting';
 import Forms from './components/Forms';
+import Product from './components/useReducer/Product';
 
 function TodoList() {
   return (
@@ -123,6 +124,11 @@ function App() {
       ------------------------------------
       <h1>Form</h1>
       <Forms />
+
+      <br />
+      ------------------------------------
+      <h1>useReducer</h1>
+      <Product />
 
 
       {/* <MovieProvider>
