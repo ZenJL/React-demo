@@ -1,7 +1,7 @@
 // create constant
 export const FETCH_TODO = 'APP/FETCH_TODO';
 export const SET_TODO = 'APP/SET_TODO';
-
+export const ADD_TODO = 'APP/ADD_TODO';
 // actions types
 export function fetchTodo(data) {
   return { 
