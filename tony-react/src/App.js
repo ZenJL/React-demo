@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import './App.css';
 
@@ -12,6 +12,7 @@ import ConditionalRendering from './components/ConditionalRendering';
 import GuestGreeting from './sampleApp/GuestGreeting';
 import Forms from './components/Forms';
 import Product from './components/useReducer/Product';
+import Memo from './components/memo/Memo';
 
 function TodoList() {
   return (
@@ -65,6 +66,23 @@ function App() {
     fetchUsers();
   }, [])
   // render -> useEffect -> update data -> cpn re-render -> useEffect // loop render
+
+  // useRef
+  const storeRef = useRef(null);
+  function handleChangeInputStore(e) {
+    const { value } = e.target;
+    // setStore(value);
+    storeRef.current = value;
+  }
+
+  function handleSubmitUseRef() {
+    console.log('store: ', storeRef.current)
+  }
+
+  function handleFocusInputRef() {
+    storeRef.current.select();
+    console.log('stor: ', storeRef.current)
+  }
 
   return (
     <div className="App">
@@ -130,6 +148,18 @@ function App() {
       <h1>useReducer</h1>
       <Product />
 
+      <br />
+      ------------------------------------
+      <h1>useRef</h1>
+      <input ref={storeRef} defaultValue="lorem abc" type="text" onChange={handleChangeInputStore} />
+      <button type='button' onClick={handleSubmitUseRef}>submit</button>
+      <button type='button' onClick={handleFocusInputRef}>submit focus</button>
+
+
+      <br />
+      ------------------------------------
+      <h1>memo</h1>
+      <Memo />
 
       {/* <MovieProvider>
        <MovieFilm />
