@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 
 import MemoForm from './MemoForm';
 import MemoProduct from './MemoProduct';
 
-function Memo() {
-  const [name, setName] = useState('truong')
+import useResizeWindow from '../../hooks/useResizeWindow';
 
+function Memo() {
+  const [name, setName] = useState('truong');
+  const isWindowSmall = useResizeWindow();
+
+  const oddNumber = useMemo(() => {
+    return 2 + 2
+  }, [])
+  
+  const handleShowProduct = useCallback(() => {
+    console.log("handleShowProduct: ")
+  }, [])
+
+  console.log('oddNumber: ', oddNumber)
+  console.log('isWindowSmall: ', isWindowSmall)
+  
   return (
     <div>
       <MemoForm name={name} setName={setName} />
 
-      <MemoProduct name={name} />
+      <MemoProduct handleShowProduct={handleShowProduct} />
     </div>
   )
 }

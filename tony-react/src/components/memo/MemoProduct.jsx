@@ -1,11 +1,19 @@
 import React, { memo } from 'react'
 
-function MemoProduct({ name }) {
+import useResizeWindow from '../../hooks/useResizeWindow';
+
+function MemoProduct({ name, handleShowProduct }) {
   console.log("render MemoProduct")
+  const isWindowSmall = useResizeWindow();
+
+  console.log('isWindowSmall MemoProduct: ', isWindowSmall)
+
 
   return (
     <div>
         name product: {name}
+
+        <button type="button" onClick={handleShowProduct}>show product</button>
     </div>
   )
 }
