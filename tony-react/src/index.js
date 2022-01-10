@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom'
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -8,7 +10,9 @@ import { AppProvider } from './context/appContext';
 
 ReactDOM.render(
   <AppProvider>
-    <App />
+    <Router> 
+      <App />
+    </Router>
   </AppProvider>,
   document.getElementById('root')
 );

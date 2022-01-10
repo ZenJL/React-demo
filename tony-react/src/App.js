@@ -1,5 +1,6 @@
 
 import { useEffect, useState, useRef } from 'react';
+import { Route, Link } from 'react-router-dom'
 
 import './App.css';
 
@@ -86,28 +87,16 @@ function App() {
 
   return (
     <div className="App">
-      <h1 style={{ fontSize: '40px', color: '#f00' }}>useEffect</h1>
-      <b>List Users</b> <br />
-      {users.map(user => (
-        <div>
-          {user.firstName}
-        </div>
-      ))}
-      <h1 style={{ fontSize: '40px', color: '#f00' }}>Expression in JSX</h1>
-      <div>
-        {1 > 2 ? "not true" : "not false"} <br />
-        {1 + 2} <br />
-        {isNewbie ? "this is react" : null} <br />
-        {isNewbie && "this is react &&"} <br />
-        {isNewbie || "this is react ||"} <br />
-        <div style={{ display: 'flex', justifyContent: 'space-between'}}>
-          <div>{isNewbie ? '1' : null}</div>
-          <div>2</div>
-        </div>
-      </div>
+      <ul className='list'>
+        <li><Link to="/todos">Todo</Link></li>
+        <li><Link to="/abc">abc</Link></li>
+      </ul>
+      
+      <Route path="/todos" component={TodoList} />
+      {/* <Route path="/" component={TodoList} /> */}
+
 
       <br />
-      <TodoList />
 
       <br />
       <h1>Component react</h1>
