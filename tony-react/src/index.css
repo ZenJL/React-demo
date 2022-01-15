@@ -19,3 +19,6 @@ code {
   display: flex;
   padding: 0 5px;
 }
+.list li a.active {
+  text-decoration: underline;
+}

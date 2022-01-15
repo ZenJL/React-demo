@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Switch, Redirect } from 'react-router-dom'
 
 import './App.css';
 
@@ -14,6 +14,9 @@ import GuestGreeting from './sampleApp/GuestGreeting';
 import Forms from './components/Forms';
 import Product from './components/useReducer/Product';
 import Memo from './components/memo/Memo';
+
+import Home from './components/home/Home';
+import About from './components/about/About';
 
 function TodoList() {
   return (
@@ -88,12 +91,37 @@ function App() {
   return (
     <div className="App">
       <ul className='list'>
-        <li><Link to="/todos">Todo</Link></li>
-        <li><Link to="/abc">abc</Link></li>
+        <li>
+          <Link to="/">
+            Todo
+          </Link>
+        </li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/home">Home</Link></li>
       </ul>
       
-      <Route path="/todos" component={TodoList} />
-      {/* <Route path="/" component={TodoList} /> */}
+      {/* <Route exact path="/" component={TodoList} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/about/:id" component={Home} />
+      <Route exact path="/home" component={Home} /> */}
+
+      {/* <Switch>
+        <Route exact path="/" component={TodoList} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/about/:id" component={Home} />
+        <Route exact path="/home" component={Home} />
+      </Switch> */}
+
+      <Switch>
+        <Route path="/about/:id" component={Home} />
+        <Route path="/about" component={About} />
+        <Route path="/home" component={Home} />
+        <Route path="/" component={TodoList} />
+      </Switch>
+
+
+      {/* <Redirect to="/home" />  */}
+
 
 
       <br />
@@ -161,3 +189,5 @@ export default App;
 
 
 // component App -> render first => count: 0 -> update state -> component A re-render -> count: next state
+
+// Todo => fetch todo => click view detail => link todo/1 => Todo detail
