@@ -16,17 +16,17 @@ function App() {
         <Route 
           path="/" 
           component={UserDashboard}
-          render={(props) => <MainLayout><UserDashboard /></MainLayout>} 
-          children={(props) => {
-            console.log('children: ', props)
-            return (
-              <div>
-                children
-                <br />
-                <UserDashboard />
-              </div>
-            )
-          }}
+          // render={(props) => <MainLayout><UserDashboard /></MainLayout>} 
+          // children={(props) => {
+          //   console.log('children: ', props)
+          //   return (
+          //     <div>
+          //       children
+          //       <br />
+          //       <UserDashboard />
+          //     </div>
+          //   )
+          // }}
         />
       </Switch>
     </div>
