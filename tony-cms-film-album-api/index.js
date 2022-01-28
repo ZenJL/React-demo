@@ -10,6 +10,7 @@ app.use(cors());
 // router
 const filmRoute = require('./routes/flim');
 const userRoute = require('./routes/user');
+const authRoute = require('./routes/auth');
 
 // env
 const PORT = process.env.PORT || 4000;
@@ -37,6 +38,7 @@ app.get('/', (req, res) => {
 // routes middleware
 app.use('/api/film', filmRoute);
 app.use('/api/user', userRoute);
+app.use('/api/auth', authRoute);
 
 app.listen(PORT, () => {
   console.log(`Server Up and running localhost:${PORT}`)

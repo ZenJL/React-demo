@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 // @route    GET /api/film/:id
 // @desc     Get single film
 // @access   Public  
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   const id = req.params.id;
   try {
     const filmItem = await Film.findById(id);
