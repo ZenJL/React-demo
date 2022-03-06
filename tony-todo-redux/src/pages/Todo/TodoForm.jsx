@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 // action
 import { addTodo } from '../../reducers/todoReducer';
@@ -8,7 +8,9 @@ const mapDispatchToProps = {
   addTodo
 }
 
-function TodoForm({addTodo}) {
+function TodoForm() {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState('');
 
   function handleAddTodo() {
@@ -18,7 +20,8 @@ function TodoForm({addTodo}) {
       status: 'new'
     }
     console.log('handleAddTodo: ', payload)
-    addTodo(payload)
+    // addTodo(payload)
+    dispatch(addTodo(payload))
   }
 
   return (
@@ -30,4 +33,6 @@ function TodoForm({addTodo}) {
   )
 }
 
-export default connect(null, mapDispatchToProps)(TodoForm)
+export default TodoForm;
+
+// export default connect(null, null)(TodoForm)

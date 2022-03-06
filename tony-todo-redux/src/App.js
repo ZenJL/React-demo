@@ -5,7 +5,7 @@ function App() {
     <div className="App">
       <h1>Todo Redux</h1>
 
-      <Todo />
+      <Todo id={1} />
     </div>
   );
 }

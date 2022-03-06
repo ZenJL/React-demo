@@ -1,24 +1,32 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 
 // components
 import TodoForm from './TodoForm';
 
-const mapStateToProps = state => {
-  return {
-    todos: state.todos.todos,
-    theme: state.app.theme
-  }
-}
+// const mapStateToProps = (state, ownProps) => {
+//   console.log('ownProps: ', ownProps);
+//   const { id } = ownProps;
+//   const todo = state.todos.todos.find(todo => todo.id === id);
 
-function Todo({ todos }) {
+//   return {
+//     theme: state.app.theme,
+//     todos: state.todos.todos,
+//     todo
+//   }
+// }
+// function Todo({ todos })
+
+function Todo() {
+  const todos = useSelector(state => state.todos.todos);
+
   return (
     <div>
       <TodoForm /> 
       <br />
       List todos
       <ul>
-        {todos.map(todo => (
+        {todos?.map(todo => (
           <li key={todo.id}>
             Id: {todo.id} <br />
             Title: {todo.title} <br />
@@ -30,4 +38,5 @@ function Todo({ todos }) {
   )
 }
 
-export default connect(mapStateToProps)(Todo);
+export default Todo;
+// export default connect(mapStateToProps)(Todo);
