@@ -14,6 +14,7 @@ import MainLayout from 'layouts/MainLayout';
 // pages
 const Dashboard = lazy(() => import('pages/Dashboard'));
 const Login = lazy(() => import('pages/Login'));
+const Playground = lazy(() => import('pages/Playground'));
 
 const routesConfig = [
   {
@@ -29,6 +30,12 @@ const routesConfig = [
     path: PATH_NAME.DASHBOARD,
     guard: AuthGuard,
     element: Dashboard,
+    layout: MainLayout
+  },
+  {
+    path: PATH_NAME.PLAYGROUD,
+    guard: AuthGuard,
+    element: Playground,
     layout: MainLayout
   }
 ]

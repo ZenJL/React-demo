@@ -104,7 +104,7 @@ const useStyles = makeStyles(() => ({
 export default function MiniDrawer({ children }) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
@@ -186,7 +186,7 @@ export default function MiniDrawer({ children }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Product', 'Kanban', 'User'].map((text, index) => (
+          {['Dashboard', 'Product', 'Kanban', 'User', 'Playground'].map((text, index) => (
             <ListItemButton
               key={text}
               sx={{
