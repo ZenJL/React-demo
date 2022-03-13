@@ -1,17 +1,29 @@
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
+
+// material 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+// material icons
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+
+// services
+import { loginUser } from 'services/userServices';
+
+// helpers
+import { authStorage } from 'helpers';
+
+// configs
+import { PATH_NAME } from 'configs';
 
 function Copyright(props) {
   return (
@@ -35,14 +47,24 @@ function Copyright(props) {
 const theme = createTheme();
 
 function Login() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
+    const bodyData = {
       email: data.get('email'),
-      password: data.get('password'),
-    });
+      password: data.get('password')
+    }
+    try {
+      const res = await loginUser(bodyData);
+      const accessToken = res.data?.token || null;
+      authStorage.setStorage(accessToken);
+      navigate(PATH_NAME.ROOT);
+
+    } catch (err) {
+      console.log("login error")
+    }
   };
 
   return (

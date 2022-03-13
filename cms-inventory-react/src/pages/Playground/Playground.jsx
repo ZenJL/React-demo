@@ -1,7 +1,10 @@
 import React from 'react';
 
-
+// services
 import { fetchTodo } from 'services/todoServices';
+
+// helpers
+import { canAction } from 'helpers';
 
 function Playground() {
 
@@ -18,6 +21,11 @@ function Playground() {
     <div>
       
       <button type="button" onClick={handleFetchTodo}>fetch todo</button>
+      
+      {canAction('view', 'btnDelete') && (
+        <button type="button" onClick={handleFetchTodo}>delete user</button>
+      )}
+      
     </div>
   )
 }

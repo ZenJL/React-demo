@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { styled, useTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
@@ -21,6 +23,12 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import AccountCircle from '@mui/icons-material/AccountCircle';
+
+// helpers
+import { authStorage } from 'helpers';
+
+// configs
+import { PATH_NAME } from 'configs';
 
 const drawerWidth = 240;
 
@@ -103,6 +111,7 @@ const useStyles = makeStyles(() => ({
 
 export default function MiniDrawer({ children }) {
   const classes = useStyles();
+  const navigate = useNavigate();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -123,6 +132,11 @@ export default function MiniDrawer({ children }) {
   const handleHideMenuProfile = () => {
     setAnchorEl(false);
   };
+
+  function hanldeLogout() {
+    authStorage.logOut();
+    navigate(PATH_NAME.LOGIN);
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -176,7 +190,7 @@ export default function MiniDrawer({ children }) {
         <div className={classes.name}>Tony Nguyen</div>
         <Divider />
         <MenuItem>Change password</MenuItem>
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={hanldeLogout}>Logout</MenuItem>
       </Menu>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
@@ -186,14 +200,24 @@ export default function MiniDrawer({ children }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Dashboard', 'Product', 'Kanban', 'User', 'Playground'].map((text, index) => (
+          {[
+            {
+              label: 'Dashboard',
+              pathName: PATH_NAME.DASHBOARD
+            },
+            {
+              label: 'Playground',
+              pathName: PATH_NAME.PLAYGROUD
+            }
+          ].map((item, index) => (
             <ListItemButton
-              key={text}
+              key={item.pathName}
               sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
                 px: 2.5,
               }}
+              onClick={() => navigate(item.pathName)}
             >
               <ListItemIcon
                 sx={{
@@ -204,7 +228,7 @@ export default function MiniDrawer({ children }) {
               >
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary={item.label} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           ))}
         </List>

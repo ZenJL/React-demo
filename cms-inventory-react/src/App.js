@@ -7,6 +7,8 @@ import Spinner from 'components/Spinner';
 import RoutesMain from 'routes/Routes';
 
 export default function App() {
+
+  console.log('app')
   return (
     <>
       <RoutesMain />
