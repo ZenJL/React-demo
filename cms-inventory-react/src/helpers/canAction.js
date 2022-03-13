@@ -19,6 +19,7 @@ function defineAbilitiesFor(role) {
       break;
     case USER_ROLE.OPERATOR:
       can('view', 'btnDelete')
+      can('view', 'button')
       break;
     default:
       break;
